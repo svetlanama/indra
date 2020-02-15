@@ -35,12 +35,14 @@ eth_mnemonic="candy maple cake sugar pudding cream honey rich smooth crumble swe
 
 # TODO, could not get the command to work with a variable
 # token_address="`echo $eth_contract_addresses | jq '.["$chainId"].Token.address' | tr -d '"'`"
+echo -n ">>>> INDRA_ETH_NETWORK $INDRA_ETH_NETWORK \n\r"
+
 if [[ "$INDRA_ETH_NETWORK" == "rinkeby" ]]
-then 
-  eth_rpc_url="https://rinkeby.infura.io/metamask"
+then
+  eth_rpc_url="https://rinkeby.infura.io/v3/9b20e90f21334b2c9ef5eb7c0ffed127"
   token_address="`echo $eth_contract_addresses | jq '.["4"].Token.address' | tr -d '"'`"
 elif [[ "$INDRA_ETH_NETWORK" == "kovan" ]]
-then 
+then
   eth_rpc_url="https://kovan.infura.io/metamask"
   token_address="`echo $eth_contract_addresses | jq '.["42"].Token.address' | tr -d '"'`"
 elif [[ "$INDRA_ETH_NETWORK" == "ganache" ]]
@@ -263,6 +265,9 @@ services:
       - "6379:6379"
 
 EOF
+
+echo -n ">>>>AFTER INDRA_ETH_NETWORK $INDRA_ETH_NETWORK \n\r"
+echo -n ">>>> eth_mnemonic $eth_mnemonic \n\r"
 
 docker stack deploy -c /tmp/$project/docker-compose.yml $project
 rm -rf /tmp/$project

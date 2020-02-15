@@ -537,8 +537,13 @@ class App extends React.Component {
     // depending on payment profile for user and amount to swap,
     // the amount the hub collateralized could be lte token equivalent
     // of client eth deposit
-    const weiToSwap = collateral.sub(tokensForWei).gte(Zero)
-      ? availableWeiToSwap.toString() // sufficient collateral for entire swap
+	console.log(">>>> tokensForWei: ", tokensForWei)
+	console.log(">>>> collateral: ", collateral)
+	console.log(">>>> collateral.sub(tokensForWei): ", collateral.sub(tokensForWei))
+	let collateralRes = collateral.sub(tokensForWei).gte(Zero)
+	console.log(">>>> collateralRes: ", collateralRes)
+    const weiToSwap = collateralRes
+      ? availableWeiToSwap.toString()  // sufficient collateral for entire swap
       : tokenToWei(collateral, swapRate).toString(); // insufficient, claim all hubs balance
 
     console.log(
