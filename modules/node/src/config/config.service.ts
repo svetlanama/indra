@@ -258,8 +258,8 @@ export class ConfigService implements OnModuleInit {
           assetId: AddressZero,
           channels: [],
           id: 0,
-          lowerBoundCollateralize: parseEther(`5`),
-          upperBoundCollateralize: parseEther(`20`),
+          lowerBoundCollateralize: parseEther(`0.000000000000000001`),
+          upperBoundCollateralize: parseEther(`0.000000000000000002`),
           lowerBoundReclaim: Zero,
           upperBoundReclaim: Zero,
         };
